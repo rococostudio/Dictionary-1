@@ -8,6 +8,8 @@ import com.school.dictionary.DaoSession;
 import com.school.dictionary.DictionaryApplication;
 import com.school.dictionary.TextContentDao;
 
+import org.greenrobot.greendao.query.Query;
+
 import java.util.List;
 
 public class ContentManager {
@@ -84,7 +86,7 @@ public class ContentManager {
      * 添加
      */
     public void addContent(TextContent textContent) {
-        if (getContent(textContent.getId() + "") == null) {
+        if (getContent(textContent.getContent()) == null) {
             textContentDao.insert(textContent);
         }
     }
@@ -93,8 +95,9 @@ public class ContentManager {
      * 修改
      */
     public void changeContent(TextContent textContent) {
-        TextContent hasContent = getContent(textContent.getId() + "");
+        TextContent hasContent = getContent(textContent.getContent());
         if (hasContent != null) {
+            hasContent.setStar(textContent.getStar());
             textContentDao.update(hasContent);
         } else {
             textContentDao.insert(textContent);
@@ -109,10 +112,20 @@ public class ContentManager {
     }
 
     /**
-     * 根据包名查询
+     * 根据名字查询
      */
-    public TextContent getContent(String id) {
-        return textContentDao.queryBuilder().where(TextContentDao.Properties.Id.eq(id)).build().unique();
+    public TextContent getContent(String content) {
+        return textContentDao.queryBuilder().where(TextContentDao.Properties.Content.eq(content)).build().unique();
+    }
+
+    public List<TextContent> findContent(String content) {
+        Query<TextContent> build = textContentDao.queryBuilder().where(TextContentDao.Properties.Search.like("%" + content + "%")).build();
+        return build.list();
+    }
+
+    public List<TextContent> getStar() {
+        Query<TextContent> build = textContentDao.queryBuilder().where(TextContentDao.Properties.Star.eq("TRUE")).build();
+        return build.list();
     }
 
     /**
@@ -130,6 +143,7 @@ public class ContentManager {
         //爱情
         TextContent aiqingContent = new TextContent();
         aiqingContent.setContent("爱 情");
+        aiqingContent.setSearch("爱情aiqing");
         aiqingContent.setPinyin("ài qíng");
         aiqingContent.setAction("ai_action;qing_action");
         aiqingContent.setMeaning(
@@ -147,10 +161,12 @@ public class ContentManager {
         aiqingContent.setDifferentiate("aiqing_jiexi");
         aiqingContent.setImg("aiqing_img");
         aiqingContent.setPractice("aiqing_prac");
+        aiqingContent.setSound("aiqing_sound");
 
         //积极
         TextContent jijiContent = new TextContent();
         jijiContent.setContent("积 极");
+        jijiContent.setSearch("积极jiji");
         jijiContent.setPinyin("jī jí");
         jijiContent.setAction("ji1_action;ji2_action");
         jijiContent.setMeaning("adj  enthusiastic, proactive\n" +
@@ -172,9 +188,54 @@ public class ContentManager {
                 "虽然人工智能（AI）的技术还不成熟，但是很多专家认为，人工智能将会对社会发展产生积极影响。" +
                 "网上交友的机会多了，但面对面交流却少了，社交媒体真的拉近了人和人的关系、起到了积极作用吗？");
         jijiContent.setPractice("jiji_prac");
+        jijiContent.setSound("jiji_sound");
+
+        //偶然
+        TextContent ouranContent = new TextContent();
+        ouranContent.setContent("偶 然");
+        ouranContent.setSearch("偶然ouran");
+        ouranContent.setPinyin("ǒu rán");
+        ouranContent.setAction("ou_action;ran_action");
+        ouranContent.setMeaning("adj. randomly, by chance (a chance occurrence), by accident (as in not intentional)\n" +
+                "【形】没想到会发生。常用在：\n" +
+                "\n偶然的N（机会/发现），如：" +
+                "以前没有人敢吃西红柿，一个偶然的机会，一位画家发现它是一种美味的食物。" +
+                "\n" +
+                "\n……是（很）偶然的，如：" +
+                "很多科学发明都是很偶然的，比如青霉素（penicillin）和蒸汽机（steam engine）。" +
+                "这个事情的发生是很偶然的，你不必在意。" +
+                "\n" +
+                "\nSub偶然+V，如：" +
+                "上个星期我去秀水市场，偶然碰到了我的高中同学，原来他现在也在中国留学。");
+        ouranContent.setDifferentiate("ouran_jiexi");
+        ouranContent.setPractice("ouran_prac");
+        ouranContent.setSound("ouran_sound");
+
+        //经验
+        TextContent jingyanContent = new TextContent();
+        jingyanContent.setContent("经 验");
+        jingyanContent.setSearch("经验jingyan");
+        jingyanContent.setPinyin("jīng yàn");
+        jingyanContent.setAction("jing_action;yan_action");
+        jingyanContent.setMeaning("n. experience [gained via working in a position or field over time and having gained a particular skill or knowledge from] (as in work experience, life experience)\n" +
+                "\n【名】因为长期从事某工作或事情，从中得到的知识或技能。常用在：\n" +
+                "\n有（没有）经验，如：\n" +
+                "\n很多病人都想找他看病，因为他是一位很有经验的大夫，在治疗癌症方面特别有经验。" +
+                "我刚当老师半年，还没有教学经验。" +
+                "\n" +
+                "\n积累经验，如：\n" +
+                "\n你在工作中要注意积累经验。" +
+                "\n" +
+                "\n经验丰富，如：\n" +
+                "我们王老师教了30年汉语了，教得特别好，她的经验非常丰富。");
+        jingyanContent.setDifferentiate("jingyan_jiexi");
+        jingyanContent.setPractice("jingyan_prac");
+        jingyanContent.setSound("jingyan_sound");
 
         addContent(aiqingContent);
         addContent(jijiContent);
+        addContent(ouranContent);
+        addContent(jingyanContent);
 
     }
 

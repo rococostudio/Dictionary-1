@@ -13,14 +13,22 @@ import com.school.dictionary.R;
 import com.school.dictionary.content.ContentManager;
 import com.school.dictionary.content.TextContent;
 import com.school.dictionary.tool.ResourceUtil;
+import com.school.dictionary.tool.SoundTool;
 
 import java.util.List;
 
-public class ContentActivity extends AppCompatActivity {
+public class ContentActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView content, pinyin, meaning;
     private ImageView sound, action1, action2, img, differentiate, practice;
     private TextView title1, title2, title3, title4, title5;
+
+    private ImageView back;
+    private TextView title;
+
+    private ImageView star;
+
+    private TextContent showContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,22 +54,37 @@ public class ContentActivity extends AppCompatActivity {
         title3 = findViewById(R.id.title3);
         title4 = findViewById(R.id.title4);
         title5 = findViewById(R.id.title5);
+        back = findViewById(R.id.back);
+        title = findViewById(R.id.title);
+        star = findViewById(R.id.star);
+
+        back.setOnClickListener(this);
+        star.setOnClickListener(this);
+        sound.setOnClickListener(this);
     }
 
     private void initEvent() {
         List<TextContent> allContent = ContentManager.getInstance().getAllContent();
 
-        TextContent showContent = null;
+        String findContent = getIntent().getStringExtra("content");
 
         for (TextContent textContent : allContent) {
-            if (TextUtils.equals(textContent.getContent().replace(" ", ""), "积极")) {
+            if (TextUtils.equals(textContent.getContent(), findContent)) {
                 showContent = textContent;
+                break;
             }
         }
 
         if (showContent == null)
             return;
 
+        if (showContent.getStar()) {
+            star.setImageResource(R.drawable.ic_star_select);
+        } else {
+            star.setImageResource(R.drawable.ic_star_unselect);
+        }
+
+        title.setText(showContent.getContent().replace(" ", ""));
         content.setText(showContent.getContent());
         pinyin.setText(showContent.getPinyin());
         meaning.setText(showContent.getMeaning());
@@ -90,4 +113,24 @@ public class ContentActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.back:
+                finish();
+                break;
+            case R.id.sound:
+                SoundTool.getInstance().playSound(showContent.getSound());
+                break;
+            case R.id.star:
+                showContent.setStar(!showContent.getStar());
+                if (showContent.getStar()) {
+                    star.setImageResource(R.drawable.ic_star_select);
+                } else {
+                    star.setImageResource(R.drawable.ic_star_unselect);
+                }
+                ContentManager.getInstance().changeContent(showContent);
+                break;
+        }
+    }
 }

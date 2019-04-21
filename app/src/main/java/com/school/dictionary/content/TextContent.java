@@ -11,6 +11,8 @@ public class TextContent {
     private Long id;
     //文字
     private String content;
+    //搜索
+    private String search;
     //拼音
     private String pinyin;
     //语音
@@ -25,12 +27,17 @@ public class TextContent {
     private String differentiate;
     //练习（图片）
     private String practice;
-    @Generated(hash = 552281247)
-    public TextContent(Long id, String content, String pinyin, String sound,
-            String action, String meaning, String img, String differentiate,
-            String practice) {
+    //是否star
+    private boolean star;
+
+
+    @Generated(hash = 794922344)
+    public TextContent(Long id, String content, String search, String pinyin,
+            String sound, String action, String meaning, String img,
+            String differentiate, String practice, boolean star) {
         this.id = id;
         this.content = content;
+        this.search = search;
         this.pinyin = pinyin;
         this.sound = sound;
         this.action = action;
@@ -38,6 +45,7 @@ public class TextContent {
         this.img = img;
         this.differentiate = differentiate;
         this.practice = practice;
+        this.star = star;
     }
     @Generated(hash = 1675015659)
     public TextContent() {
@@ -95,6 +103,18 @@ public class TextContent {
     }
     public void setPractice(String practice) {
         this.practice = practice;
+    }
+    public String getSearch() {
+        return this.search;
+    }
+    public void setSearch(String search) {
+        this.search = search;
+    }
+    public boolean getStar() {
+        return this.star;
+    }
+    public void setStar(boolean star) {
+        this.star = star;
     }
 
 }

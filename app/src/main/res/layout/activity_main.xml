@@ -31,50 +31,16 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/left_private_tv"
+                    android:id="@+id/left_book_tv"
                     android:layout_width="match_parent"
                     android:layout_height="72dp"
                     android:layout_marginTop="100dp"
-                    android:drawableStart="@drawable/ic_keyboard_voice"
+                    android:drawableStart="@mipmap/book"
                     android:drawablePadding="16dp"
                     android:gravity="center_vertical"
                     android:paddingStart="20dp"
-                    android:text="123"
+                    android:text="notebook"
                     android:textColor="#fff" />
-
-                <TextView
-                    android:id="@+id/left_about_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:drawableStart="@drawable/ic_keyboard_voice"
-                    android:drawablePadding="16dp"
-                    android:gravity="center_vertical"
-                    android:paddingStart="20dp"
-                    android:text="123"
-                    android:textColor="#fff" />
-
-                <TextView
-                    android:id="@+id/left_setting_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:drawableStart="@drawable/ic_keyboard_voice"
-                    android:drawablePadding="16dp"
-                    android:gravity="center_vertical"
-                    android:paddingStart="20dp"
-                    android:text="123"
-                    android:textColor="#fff" />
-
-                <TextView
-                    android:id="@+id/left_share_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:drawableStart="@drawable/ic_keyboard_voice"
-                    android:drawablePadding="16dp"
-                    android:gravity="center_vertical"
-                    android:paddingStart="20dp"
-                    android:text="123"
-                    android:textColor="#fff"
-                    android:visibility="gone" />
 
             </LinearLayout>
         </ScrollView>
