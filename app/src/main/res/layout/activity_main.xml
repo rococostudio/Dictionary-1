@@ -39,7 +39,7 @@
                     android:drawablePadding="16dp"
                     android:gravity="center_vertical"
                     android:paddingStart="20dp"
-                    android:text="notebook"
+                    android:text="Notebook"
                     android:textColor="#fff" />
 
             </LinearLayout>
