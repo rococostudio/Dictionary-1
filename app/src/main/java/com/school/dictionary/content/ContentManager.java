@@ -143,7 +143,7 @@ public class ContentManager {
         //爱情
         TextContent aiqingContent = new TextContent();
         aiqingContent.setContent("爱 情");
-        aiqingContent.setSearch("爱情aiqing");
+        aiqingContent.setSearch("爱情aA");
         aiqingContent.setPinyin("ài qíng");
         aiqingContent.setAction("ai_action;qing_action");
         aiqingContent.setMeaning(
@@ -166,7 +166,7 @@ public class ContentManager {
         //积极
         TextContent jijiContent = new TextContent();
         jijiContent.setContent("积 极");
-        jijiContent.setSearch("积极jiji");
+        jijiContent.setSearch("积极jJ");
         jijiContent.setPinyin("jī jí");
         jijiContent.setAction("ji1_action;ji2_action");
         jijiContent.setMeaning("adj  enthusiastic, proactive\n" +
@@ -193,7 +193,7 @@ public class ContentManager {
         //偶然
         TextContent ouranContent = new TextContent();
         ouranContent.setContent("偶 然");
-        ouranContent.setSearch("偶然ouran");
+        ouranContent.setSearch("偶然oO");
         ouranContent.setPinyin("ǒu rán");
         ouranContent.setAction("ou_action;ran_action");
         ouranContent.setMeaning("adj. randomly, by chance (a chance occurrence), by accident (as in not intentional)\n" +
@@ -214,7 +214,7 @@ public class ContentManager {
         //经验
         TextContent jingyanContent = new TextContent();
         jingyanContent.setContent("经 验");
-        jingyanContent.setSearch("经验jingyan");
+        jingyanContent.setSearch("经验jJ");
         jingyanContent.setPinyin("jīng yàn");
         jingyanContent.setAction("jing_action;yan_action");
         jingyanContent.setMeaning("n. experience [gained via working in a position or field over time and having gained a particular skill or knowledge from] (as in work experience, life experience)\n" +
