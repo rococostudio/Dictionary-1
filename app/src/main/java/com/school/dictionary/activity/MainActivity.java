@@ -118,26 +118,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onKeyDown(keyCode, event);
     }
 
-    /**
-     * 弹出输入法
-     */
+
     private void showKeybord(EditText editText) {
-        //获取焦点
         editText.setFocusable(true);
         editText.setFocusableInTouchMode(true);
         editText.requestFocus();
         editText.requestFocusFromTouch();
     }
 
-    /**
-     * 收输入法
-     */
+
     private void hideKeybord(EditText editText) {
-        //失去焦点
         editText.clearFocus();
         editText.setFocusable(false);
     }
 
+    //input listener
     private void editListener() {
         main_search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -157,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    //search from input
     private void checkText(String text) {
         if (TextUtils.isEmpty(text)) {
             showList.clear();
@@ -164,12 +160,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         showList.clear();
+        //Fuzzy query
         showList.addAll(ContentManager.getInstance().findContent(text));
+        //According to English enquiries
+        boolean isAdd;
+        List<TextContent> contentForEnglish = ContentManager.getInstance().findContentForEnglish(text);
+        for (TextContent english : contentForEnglish) {
+            isAdd = false;
+            for (TextContent content : showList) {
+                if (TextUtils.equals(english.getContent(), content.getContent())) {
+                    isAdd = true;
+                }
+            }
+            if (!isAdd) {
+                showList.add(english);
+            }
+        }
+
         searchAdapter.notifyDataSetChanged();
     }
 
     /**
-     * 搜索结果点击
+     * click text
      */
     @Override
     public void searchClickCallBack(int position) {

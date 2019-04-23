@@ -123,6 +123,11 @@ public class ContentManager {
         return build.list();
     }
 
+    public List<TextContent> findContentForEnglish(String content) {
+        Query<TextContent> build = textContentDao.queryBuilder().where(TextContentDao.Properties.English.eq(content)).build();
+        return build.list();
+    }
+
     public List<TextContent> getStar() {
         Query<TextContent> build = textContentDao.queryBuilder().where(TextContentDao.Properties.Star.eq("TRUE")).build();
         return build.list();
@@ -144,6 +149,7 @@ public class ContentManager {
         TextContent aiqingContent = new TextContent();
         aiqingContent.setContent("爱 情");
         aiqingContent.setSearch("爱情aA");
+        aiqingContent.setEnglish("love");
         aiqingContent.setPinyin("ài qíng");
         aiqingContent.setAction("ai_action;qing_action");
         aiqingContent.setMeaning(
@@ -167,6 +173,7 @@ public class ContentManager {
         TextContent jijiContent = new TextContent();
         jijiContent.setContent("积 极");
         jijiContent.setSearch("积极jJ");
+        jijiContent.setEnglish("active");
         jijiContent.setPinyin("jī jí");
         jijiContent.setAction("ji1_action;ji2_action");
         jijiContent.setMeaning("adj  enthusiastic, proactive\n" +
@@ -194,6 +201,7 @@ public class ContentManager {
         TextContent ouranContent = new TextContent();
         ouranContent.setContent("偶 然");
         ouranContent.setSearch("偶然oO");
+        ouranContent.setEnglish("accident");
         ouranContent.setPinyin("ǒu rán");
         ouranContent.setAction("ou_action;ran_action");
         ouranContent.setMeaning("adj. randomly, by chance (a chance occurrence), by accident (as in not intentional)\n" +
@@ -215,6 +223,7 @@ public class ContentManager {
         TextContent jingyanContent = new TextContent();
         jingyanContent.setContent("经 验");
         jingyanContent.setSearch("经验jJ");
+        jingyanContent.setEnglish("experience");
         jingyanContent.setPinyin("jīng yàn");
         jingyanContent.setAction("jing_action;yan_action");
         jingyanContent.setMeaning("n. experience [gained via working in a position or field over time and having gained a particular skill or knowledge from] (as in work experience, life experience)\n" +

@@ -29,12 +29,14 @@ public class TextContent {
     private String practice;
     //是否star
     private boolean star;
+    //english
+    private String english;
 
 
-    @Generated(hash = 794922344)
+    @Generated(hash = 1983830986)
     public TextContent(Long id, String content, String search, String pinyin,
             String sound, String action, String meaning, String img,
-            String differentiate, String practice, boolean star) {
+            String differentiate, String practice, boolean star, String english) {
         this.id = id;
         this.content = content;
         this.search = search;
@@ -46,6 +48,7 @@ public class TextContent {
         this.differentiate = differentiate;
         this.practice = practice;
         this.star = star;
+        this.english = english;
     }
     @Generated(hash = 1675015659)
     public TextContent() {
@@ -115,6 +118,12 @@ public class TextContent {
     }
     public void setStar(boolean star) {
         this.star = star;
+    }
+    public String getEnglish() {
+        return this.english;
+    }
+    public void setEnglish(String english) {
+        this.english = english;
     }
 
 }
